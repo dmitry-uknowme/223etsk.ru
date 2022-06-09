@@ -30,7 +30,7 @@ function PageShell({
               About
             </Link>
           </Sidebar> */}
-        <Content>{children}</Content>
+        {children}
         {/* </Layout> */}
       </PageContextProvider>
     </React.StrictMode>

@@ -1,13 +1,17 @@
 import React from "react";
-import Logo from "../../renderer/components/ui/Logo";
-import { Counter } from "./Counter";
+import MainLayout from "../../renderer/components/layouts/MainLayout";
+import HomeSections from "../../renderer/components/sections/HomeSections";
+import HomeServices from "../../renderer/components/sections/HomeServices";
+import Slider from "../../renderer/components/sections/Slider";
 
-export { Page };
-
-function Page() {
+const HomePage = () => {
   return (
-    <>
-      <Logo />
-    </>
+    <MainLayout>
+      <Slider />
+      <HomeSections />
+      <HomeServices />
+    </MainLayout>
   );
-}
+};
+
+export default HomePage;

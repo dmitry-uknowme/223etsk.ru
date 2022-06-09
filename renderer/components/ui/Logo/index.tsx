@@ -1,5 +1,5 @@
 import React from "react";
-import LogoFullIcon from "../../../logo.svg";
+import LogoFullIcon from "../../../logo.png";
 
 enum LogoVariants {
   FULL = "full",
