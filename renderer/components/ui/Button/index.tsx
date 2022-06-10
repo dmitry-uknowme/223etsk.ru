@@ -4,6 +4,8 @@ import React from "react";
 export enum ButtonVariants {
   PRIMARY = "primary",
   SECONDARY = "secondary",
+  PRIMARY_OUTLINE = "primary-outline",
+  SECONDARY_OUTLINE = "secondary-outline",
 }
 
 interface ButtonProps {
@@ -18,10 +20,11 @@ const Button: React.FC<ButtonProps> = ({
   variant,
   onClick,
   className,
+  children,
 }) => {
   return (
     <button className={`btn btn-${variant} ${className}`} onClick={onClick}>
-      {label}
+      {label} {children}
     </button>
   );
 };

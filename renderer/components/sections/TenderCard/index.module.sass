@@ -1,0 +1,48 @@
+@use '../../../assets/styles/app'
+
+.card
+    position: relative
+    color: #111
+    padding: 1rem 2rem
+    min-height: 200px
+    border: 1px solid app.$red-color
+    border-radius: 1em
+    &__field
+        margin-top: 0.4rem
+        &Key
+            font-size: 0.85rem
+        &Value
+            font-size: 0.9rem
+
+    &__status
+        font-size: 0.85rem
+        display: flex
+        align-items: center
+        span
+            // display: block
+            width: 5px
+            height: 5px
+            border-radius: 50%
+            background: var(--bs-warning)
+            // background: app.$red-color
+    &__section
+        color: app.$blue-color
+        font-size: 0.85rem
+    &__method
+        color: app.$blue-color
+        font-size: 0.85rem
+    &__price
+        .card__fieldValue
+            font-size: 1rem
+            font-weight: 500
+            color: app.$red-color
+    &__date
+        .card__fieldKey
+            font-size: 0.8rem
+        .card__fieldValue
+            font-size: 0.8rem
+    &__btn
+        height: 30px
+        margin-top: 2rem
+        // position: relative
+        // bottom: 0
