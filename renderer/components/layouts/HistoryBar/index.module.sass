@@ -1,0 +1,56 @@
+.historyBar
+    // padding: 1rem
+    // margin: 2rem 0
+    // margin-top:
+    margin: 1.5rem 0
+    // background: azure
+    &__row
+        // max-width: 1200px
+        display: flex
+        align-items: center
+        // margin: auto
+    &__item
+        line-height: 1
+        font-size: 0.9rem !important
+        cursor: pointer
+        margin: 0 0.6rem 0 0.6rem !important
+        color: cadetblue
+        transition: all 0.5s
+        // &::after
+        //     // width: 0
+        //     opacity: 0
+        //     height: 2px
+        //     background: #0450f2
+        //     content: ""
+        //     position: absolute
+        //     bottom: -15px
+        //     right: 0
+        //     transition: all 0.5s
+        // &:hover::after
+        //     bottom: -1px
+        //     width: 100%
+        //     opacity: 1
+        // &:hover
+        //     color: #0450f2
+        // &:first-child
+        //     margin-left: 0 !important
+
+@media screen and (max-width: 767px)
+.historyBar
+    &__item
+        font-size: 0.9rem
+        margin: 0 0.4rem 0 0.4rem
+        // &:hover
+        //     font-weight: 400
+        //     transform: scale(1.1)
+
+@media screen and (max-width: 576px)
+.historyBar
+    &__item
+        font-size: 0.75rem
+        // margin: 0
+        // margin-left:0.5rem 
+@media screen and (max-width: 400px)
+.historyBar
+    &__item
+        font-size: 0.65rem

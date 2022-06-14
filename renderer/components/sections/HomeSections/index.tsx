@@ -7,6 +7,7 @@ const sections: ISectionItem[] = [
         title: "Коммерческие закупки",
         desc: "Закупки для нужд коммерческих предприятий",
         btnText: "Перейти к закупкам",
+        // link:"",
         btnOnClick: () => null,
     },
     {

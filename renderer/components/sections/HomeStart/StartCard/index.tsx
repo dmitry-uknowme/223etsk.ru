@@ -28,20 +28,20 @@ const StartCard: React.FC<IStartCard> = ({
             <p className={styles.card__desc}>{desc}</p>
             <div className="card__actions">
                 <div className="d-flex align-items-center justify-content-between">
-                    {/* <Link href={btnPrimaryLink}> */}
-                    <Button
-                        label={btnPrimaryText}
-                        variant={ButtonVariants.SECONDARY}
-                        className={styles.card__btn}
-                    />
-                    {/* </Link> */}
-                    {/* <Link href={btnSecondaryLink}> */}
-                    <Button
-                        label="Посмотреть тарифы"
-                        variant={ButtonVariants.SECONDARY_OUTLINE}
-                        className={styles.card__btn}
-                    />
-                    {/* </Link> */}
+                    <Link href="/pricelist">
+                        <Button
+                            label="Показать тарифы"
+                            variant={ButtonVariants.SECONDARY}
+                            className={styles.card__btn}
+                        />
+                    </Link>
+                    {/* <Link href="/pricelist">
+                        <Button
+                            label="Посмотреть тарифы"
+                            variant={ButtonVariants.SECONDARY_OUTLINE}
+                            className={styles.card__btn}
+                        />
+                    </Link> */}
                 </div>
             </div>
         </div>

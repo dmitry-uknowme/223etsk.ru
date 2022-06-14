@@ -2,6 +2,7 @@ import React from "react";
 import Button, { ButtonVariants } from "../../ui/Button";
 import styles from "./index.module.sass";
 import ArrowIcon from "../../../assets/icons/arrow_right.svg";
+import { Link } from "../../../Link";
 
 const TenderCard = () => {
     return (
@@ -120,20 +121,22 @@ const TenderCard = () => {
                         </div>
                     </div>
                     <div className="d-flex justify-content-end">
-                        <Button
-                            label="Перейти к закупке"
-                            variant={ButtonVariants.PRIMARY}
-                            className={styles.card__btn}
-                            children={
-                                <>
-                                    &nbsp;
-                                    <img
-                                        src={ArrowIcon}
-                                        style={{ width: "30px" }}
-                                    />
-                                </>
-                            }
-                        />
+                        <Link href="/tenders/1">
+                            <Button
+                                label="Перейти к закупке"
+                                variant={ButtonVariants.PRIMARY}
+                                className={styles.card__btn}
+                                children={
+                                    <>
+                                        &nbsp;
+                                        <img
+                                            src={ArrowIcon}
+                                            style={{ width: "30px" }}
+                                        />
+                                    </>
+                                }
+                            />
+                        </Link>
                     </div>
                 </div>
             </div>

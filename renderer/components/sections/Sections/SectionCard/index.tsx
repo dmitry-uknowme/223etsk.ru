@@ -6,6 +6,7 @@ export interface ISectionItem {
     title: string;
     desc: string;
     btnText: string;
+    link?: string;
     btnOnClick: () => any;
 }
 

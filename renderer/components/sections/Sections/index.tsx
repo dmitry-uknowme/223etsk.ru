@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "../../../Link";
 import SectionCard, { ISectionItem } from "./SectionCard";
 
 interface SectionsProps {
@@ -11,7 +12,9 @@ const Sections: React.FC<SectionsProps> = ({ items }) => {
             <div className="row">
                 {items.map((item) => (
                     <div className="col-md-4">
-                        <SectionCard section={item} />
+                        <Link href="/tenders">
+                            <SectionCard section={item} />
+                        </Link>
                     </div>
                 ))}
             </div>
