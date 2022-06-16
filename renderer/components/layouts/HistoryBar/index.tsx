@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "../../../Link";
 import styles from "./index.module.sass";
 
+interface IHistoryItem {
+    label: string;
+    path?: string;
+    active?: boolean;
+}
 
-const HistoryBar = ({ historyData }) => {
+interface HistoryBarProps {
+    historyData: IHistoryItem[];
+}
+
+const HistoryBar: React.FC<HistoryBarProps> = ({ historyData }) => {
     return (
         <div className={`${styles.historyBar} d-md-block d-sm-none`}>
             <div className={styles.historyBar__row}>
@@ -30,12 +39,11 @@ const HistoryBar = ({ historyData }) => {
                         )}
                         {id !== historyData.length - 1 && (
                             <div className="historyBar__divider text-muted">
-                                >
+                                {">"}
                             </div>
                         )}
                     </>
                 ))}
-              
             </div>
         </div>
     );
