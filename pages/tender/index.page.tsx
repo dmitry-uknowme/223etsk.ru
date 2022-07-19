@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import fetchTender from "../../renderer/api/fetchTender";
 import HistoryBar from "../../renderer/components/layouts/HistoryBar";
 import MainLayout from "../../renderer/components/layouts/MainLayout";
 import TenderCard from "../../renderer/components/layouts/Tender/Card";
@@ -7,39 +9,57 @@ import TendersFilter from "../../renderer/components/sections/TendersFilter";
 import Button, { ButtonVariants } from "../../renderer/components/ui/Button";
 import styles from "./index.module.sass";
 
-const TenderPage = (props) => {
-    console.log("propssss", props);
+interface TenderPageProps {
+    tenderId: string;
+    serverTender: any;
+}
+
+const TenderPage: React.FC<TenderPageProps> = ({ tenderId }) => {
+    const { data: tender } = useQuery("tender", () => fetchTender(tenderId));
+
     return (
         <MainLayout>
             <div className="container">
                 <div className="row">
-                    <HistoryBar
-                        historyData={[
-                            { label: "Главная", path: "/", active: true },
-                            {
-                                label: "Поиск закупок",
-                                path: "/tenders",
-                                active: true,
-                            },
-                            {
-                                label: "Закупка № 894721",
-                            },
-                        ]}
-                    />
-                    <div className="d-flex align-items-center">
-                        <h2 className="text-black m-0">Закупка № 894721</h2>
-                        <Button
-                            label="Подать заявку"
-                            variant={ButtonVariants.SECONDARY}
-                            className={styles.tender__btn}
+                    {tender && (
+                        <HistoryBar
+                            historyData={[
+                                {
+                                    label: "Главная",
+                                    path: "/",
+                                    active: true,
+                                },
+                                {
+                                    label: "Поиск закупок",
+                                    path: "/tenders",
+                                    active: true,
+                                },
+                                {
+                                    label: "Закупка №" + tender.number,
+                                },
+                            ]}
                         />
-                    </div>
-                    <div className="col-md-9 mt-3">
-                        <TenderCard />
-                    </div>
-                    <div className="col-md-3">
-                        <TenderNav />
-                    </div>
+                    )}
+                    {tender && (
+                        <>
+                            <div className="d-flex align-items-center">
+                                <h2 className="text-black m-0">
+                                    Закупка №{tender.number}
+                                </h2>
+                                <Button
+                                    label="Подать заявку"
+                                    variant={ButtonVariants.SECONDARY}
+                                    className={styles.tender__btn}
+                                />
+                            </div>
+                            <div className="col-md-9 mt-3">
+                                <TenderCard tender={tender} />
+                            </div>
+                            <div className="col-md-3">
+                                <TenderNav />
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </MainLayout>

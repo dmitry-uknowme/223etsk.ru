@@ -11,6 +11,7 @@ export enum ButtonVariants {
 interface ButtonProps {
   label: string;
   className?: string;
+  style?: React.CSSProperties;
   variant?: ButtonVariants | ButtonVariants.PRIMARY;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -21,9 +22,14 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className,
   children,
+  style,
 }) => {
   return (
-    <button className={`btn btn-${variant} ${className}`} onClick={onClick}>
+    <button
+      className={`btn btn-${variant} ${className}`}
+      style={style}
+      onClick={onClick}
+    >
       {label} {children}
     </button>
   );

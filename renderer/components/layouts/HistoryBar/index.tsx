@@ -19,7 +19,7 @@ const HistoryBar: React.FC<HistoryBarProps> = ({ historyData }) => {
                 {historyData?.map(({ label, path, active }, id) => (
                     <>
                         {active ? (
-                            <Link href={path}>
+                            <Link href={path} key={id}>
                                 <div
                                     className={`${styles.historyBar__item} ${
                                         active ? "text-secondary" : "text-muted"

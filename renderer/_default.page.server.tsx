@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import ReactDOMServer from "react-dom/server";
 import React from "react";
 import { PageShell } from "./PageShell";
@@ -5,17 +7,29 @@ import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr";
 import logoUrl from "./logo.png";
 import type { PageContext } from "./types";
 import type { PageContextBuiltIn } from "vite-plugin-ssr";
+import {
+  dehydrate,
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
 
 export { render };
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ["pageProps", "urlPathname"];
 
 async function render(pageContext: PageContextBuiltIn & PageContext) {
+  const queryClient = new QueryClient();
+  const dehydratedState = dehydrate(queryClient);
   const { Page, pageProps } = pageContext;
   const pageHtml = ReactDOMServer.renderToString(
-    <PageShell pageContext={pageContext}>
-      <Page {...pageProps} />
-    </PageShell>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={dehydratedState}>
+        <PageShell pageContext={pageContext}>
+          <Page {...pageProps} />
+        </PageShell>
+      </Hydrate>
+    </QueryClientProvider>
   );
 
   // See https://vite-plugin-ssr.com/head

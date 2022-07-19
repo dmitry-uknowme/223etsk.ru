@@ -1,1 +1,1 @@
-export default "/tenders/:id";
+export default "/tenders/:tenderId";
