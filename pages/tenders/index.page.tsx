@@ -39,6 +39,39 @@ interface TendersPageProps {
   serverTendersCount: number;
 }
 
+const localizedStatuses = [
+  {
+    id: 0,
+    value: "ALL",
+    label: "Все статусы",
+  },
+  {
+    id: 1,
+    value: ITenderStatusVariants.ACCEPTING_APPLICATIONS,
+    label: "Идёт приём заявок",
+  },
+  {
+    id: 2,
+    value: ITenderStatusVariants.REVIEW_APPLICATIONS,
+    label: "Рассмотрение заявок",
+  },
+  {
+    id: 3,
+    value: ITenderStatusVariants.BIDDING_PROCESS,
+    label: "Идут торги",
+  },
+  {
+    id: 4,
+    value: ITenderStatusVariants.SUMMING_UP_APPLICATIONS,
+    label: "Подведение итогов",
+  },
+  {
+    id: 5,
+    value: ITenderStatusVariants.BIDDING_COMPLETED,
+    label: "Торги завершены",
+  },
+];
+
 const TendersPage: React.FC<TendersPageProps> = () => {
   const [isFiltersOpened, setFiltersOpened] = useState(false);
   const [filters, setFilters] = useState(defaultFilter);
@@ -73,6 +106,18 @@ const TendersPage: React.FC<TendersPageProps> = () => {
   });
 
   const { Option, OptGroup } = Select;
+
+  // useEffect(() => {
+  //   if (
+  //     filters.statuses === defaultFilter.statuses ||
+  //     // filters.statuses.length === 0 ||
+  //     filters.statuses.includes("ALL")
+  //   ) {
+  //     // filters.
+  //   }
+  // }, [filters.statuses]);
+
+  console.log(filters.statuses === defaultFilter.statuses);
 
   useEffect(() => {
     updateTenders();
@@ -280,44 +325,36 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                             <Select
                               mode="tags"
                               maxTagCount={5}
-                              defaultValue={["ALL"]}
                               style={{ width: "100%" }}
-                              onChange={(e) => console.log("eee", e)}
-                              options={[{ label: "da", value: "da" }]}
-                            >
-                              <Option value="ALL">Все статусы</Option>
-                              <Option
-                                value={
-                                  ITenderStatusVariants.ACCEPTING_APPLICATIONS
+                              onChange={(statuses: string[]) => {
+                                console.log("sttt", statuses);
+                                if (
+                                  filters.statuses === defaultFilter.statuses ||
+                                  filters.statuses.includes("ALL")
+                                ) {
+                                  setFilters((state) => ({
+                                    ...state,
+                                    statuses: ["ALL"],
+                                  }));
+                                } else {
+                                  setFilters((state) => ({
+                                    ...state,
+                                    statuses: statuses.filter(
+                                      (s) => s !== "ALL"
+                                    ),
+                                  }));
                                 }
-                              >
-                                Идёт приём заявок
-                              </Option>
-                              <Option
-                                value={
-                                  ITenderStatusVariants.REVIEW_APPLICATIONS
-                                }
-                              >
-                                Окончен приём заявок
-                              </Option>
-                              <Option
-                                value={ITenderStatusVariants.BIDDING_PROCESS}
-                              >
-                                Идут торги
-                              </Option>
-                              <Option
-                                value={
-                                  ITenderStatusVariants.SUMMING_UP_APPLICATIONS
-                                }
-                              >
-                                Подведение итогов
-                              </Option>
-                              <Option
-                                value={ITenderStatusVariants.BIDDING_COMPLETED}
-                              >
-                                Торги завершены
-                              </Option>
-                            </Select>
+                              }}
+                              options={[
+                                localizedStatuses[0],
+                                ...defaultFilter.statuses.map((s) =>
+                                  localizedStatuses.find((s2) => s2.value === s)
+                                ),
+                              ]}
+                              value={filters.statuses.map((s) =>
+                                localizedStatuses.find((s2) => s2.value === s)
+                              )}
+                            ></Select>
                           </FormControl>
                         </div>
                         <div className="col-md-4 mt-4">
@@ -467,3 +504,13 @@ const TendersPage: React.FC<TendersPageProps> = () => {
 };
 
 export default TendersPage;
+
+// if (
+//   statuses === defaultFilter.statuses ||
+//   // filters.statuses.length === 0 ||
+//   statuses.includes("ALL")
+// ) {
+// setFilters((state) => ({
+//   ...state,
+//   statuses: statuses /* .filter(
+//     (sta
