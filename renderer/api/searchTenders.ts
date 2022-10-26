@@ -21,7 +21,7 @@ export const defaultFilter = {
   },
   sections: ["COMMERCIAL", "FZ223"],
   methods: [
-    ITenderMethodVariants.AUCTION_LOWER,
+    // ITenderMethodVariants.AUCTION_LOWER,
     ITenderMethodVariants.AUCTION,
     ITenderMethodVariants.TWO_STAGE_AUCTION,
     ITenderMethodVariants.AUCTION_DOWN,
@@ -47,12 +47,12 @@ export const defaultFilter = {
   ],
 };
 
-const searchTenders = async (filter?: IFilter) => {
-  // if (!filter) {
-  //   filter = defaultFilter;
-  // }
+const searchTenders = async (filters?: IFilter) => {
+  if (!filters) {
+    filters = defaultFilter;
+  }
 
-  const { data } = await axios.post(`${API_URL}/procedures`, defaultFilter);
+  const { data } = await axios.post(`${API_URL}/procedures`, filters);
   return data;
 };
 

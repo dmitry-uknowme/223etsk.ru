@@ -1,5 +1,6 @@
 import { TriangleDownIcon } from "@chakra-ui/icons";
 import { Fade } from "react-reveal";
+import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionButton,
@@ -33,22 +34,28 @@ import {
   ITenderMethodVariants,
   ITenderStatusVariants,
 } from "../../renderer/types/tender";
+import useDebounce from "../../renderer/hooks/useDebounce";
 
 interface TendersPageProps {
   serverTenders: ITender[];
   serverTendersCount: number;
 }
 
+const localizedSections = [
+  { id: 1, value: "COMMERCIAL", label: "Коммерческие торги" },
+  { id: 2, value: "FZ223", label: "223-ФЗ" },
+];
+
 const localizedStatuses = [
-  {
-    id: 0,
-    value: "ALL",
-    label: "Все статусы",
-  },
+  // {
+  //   id: 0,
+  //   value: "ALL",
+  //   label: "Все статусы",
+  // },
   {
     id: 1,
     value: ITenderStatusVariants.ACCEPTING_APPLICATIONS,
-    label: "Идёт приём заявок",
+    label: "Идет прием заявок",
   },
   {
     id: 2,
@@ -72,9 +79,57 @@ const localizedStatuses = [
   },
 ];
 
+const localizedMethods = [
+  {
+    id: 1,
+    value: ITenderMethodVariants.AUCTION,
+    label: "Аукцион",
+  },
+  {
+    id: 2,
+    value: ITenderMethodVariants.AUCTION_DOWN,
+    label: "Редукцион",
+  },
+  {
+    id: 3,
+    value: ITenderMethodVariants.COMPETITIVE_SELECTION,
+    label: "Конкурентный отбор",
+  },
+  {
+    id: 4,
+    value: ITenderMethodVariants.CONTEST,
+    label: "Конкурс",
+  },
+  {
+    id: 5,
+    value: ITenderMethodVariants.MAKE_OFFERS,
+    label: "Предложение делать оферты",
+  },
+  {
+    id: 6,
+    value: ITenderMethodVariants.REQUEST_OFFERS,
+    label: "Запрос предложений",
+  },
+  {
+    id: 7,
+    value: ITenderMethodVariants.REQUEST_QUOTATION,
+    label: "Запрос котировок",
+  },
+  {
+    id: 8,
+    value: ITenderMethodVariants.TWO_STAGE_AUCTION,
+    label: "Двухэтапный аукцион",
+  },
+];
+
 const TendersPage: React.FC<TendersPageProps> = () => {
+  const [isReadyApplyFilters, setReadyApplyFilters] = useState<boolean>(false);
   const [isFiltersOpened, setFiltersOpened] = useState(false);
   const [filters, setFilters] = useState(defaultFilter);
+  const debounceReadyFilters = useDebounce(
+    () => setReadyApplyFilters(true),
+    500
+  );
 
   const queryClient = useQueryClient();
   const query = useQuery(
@@ -117,10 +172,17 @@ const TendersPage: React.FC<TendersPageProps> = () => {
   //   }
   // }, [filters.statuses]);
 
-  console.log(filters.statuses === defaultFilter.statuses);
+  // console.log("fff", filters.statuses);
 
   useEffect(() => {
-    updateTenders();
+    // updateTenders();
+    if (defaultFilter === filters) {
+      debounceReadyFilters();
+    }
+
+    // setTimeout(() => {
+    //   setReadyApplyFilters(false);
+    // }, 2500);
   }, [filters]);
 
   return (
@@ -128,6 +190,28 @@ const TendersPage: React.FC<TendersPageProps> = () => {
       <ThemeProvider theme={theme}>
         <ChakraProvider theme={theme}>
           {/* <div style={{ background: "#f5f5f5" }}> */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isReadyApplyFilters ? { opacity: "1" } : { opacity: "0" }}
+          >
+            <Button
+              label="Применить"
+              variant={ButtonVariants.SECONDARY}
+              style={{
+                opacity: 0.85,
+                height: "30px",
+                position: "fixed",
+                bottom: "20%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: "200",
+              }}
+              onClick={() => {
+                //console.log("flllllll", filters, defaultFilter);
+                updateTenders();
+              }}
+            ></Button>
+          </motion.div>
           <div className="container">
             <div className="row align-items-center">
               <HistoryBar
@@ -249,19 +333,35 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                      <div className="row">
+                      <div className="row mt-3">
                         <div className="col-md-4">
                           <FormControl>
                             <FormLabel>Секции размещения:</FormLabel>
                             <Select
                               mode="tags"
                               maxTagCount={5}
-                              defaultValue={["ALL"]}
+                              // defaultValue={["ALL"]}
                               style={{ width: "100%" }}
+                              options={[
+                                // localizedStatuses[0],
+                                ...defaultFilter.sections.map((s) =>
+                                  localizedSections.find((s2) => s2.value === s)
+                                ),
+                              ]}
+                              value={filters.sections.map((s) =>
+                                localizedSections.find((s2) => s2.value === s)
+                              )}
+                              onChange={(sections: string[]) => {
+                                // console.log("sttt", statuses);
+                                setFilters((state) => ({
+                                  ...state,
+                                  sections,
+                                }));
+                              }}
                             >
-                              <Option value="ALL">Все секции</Option>
+                              {/* <Option value="ALL">Все секции</Option>
                               <Option value="FZ223">223-ФЗ</Option>
-                              <Option value="MARKET">ЭТСК-маркет</Option>
+                              <Option value="MARKET">ЭТСК-маркет</Option> */}
                             </Select>
                           </FormControl>
                         </div>
@@ -273,50 +373,23 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                               maxTagCount={5}
                               defaultValue={["ALL"]}
                               style={{ width: "100%" }}
-                            >
-                              <Option value="ALL">Все способы</Option>
-                              <Option value={ITenderMethodVariants.AUCTION}>
-                                Аукцион
-                              </Option>
-                              <Option
-                                value={ITenderMethodVariants.AUCTION_DOWN}
-                              >
-                                Аукцион на понижение
-                              </Option>
-                              <Option
-                                value={ITenderMethodVariants.AUCTION_LOWER}
-                              >
-                                Редукцион
-                              </Option>
-                              <Option
-                                value={ITenderMethodVariants.TWO_STAGE_AUCTION}
-                              >
-                                Двухэтапный аукцион
-                              </Option>
-                              <Option
-                                value={
-                                  ITenderMethodVariants.COMPETITIVE_SELECTION
-                                }
-                              >
-                                Конкурентный отбор
-                              </Option>
-                              <Option value={ITenderMethodVariants.CONTEST}>
-                                Конкурс
-                              </Option>
-                              <Option value={ITenderMethodVariants.MAKE_OFFERS}>
-                                Предложение делать оферты
-                              </Option>
-                              <Option
-                                value={ITenderMethodVariants.REQUEST_OFFERS}
-                              >
-                                Запрос предложений
-                              </Option>
-                              <Option
-                                value={ITenderMethodVariants.REQUEST_QUOTATION}
-                              >
-                                Запрос котировок
-                              </Option>
-                            </Select>
+                              options={[
+                                // localizedStatuses[0],
+                                ...defaultFilter.methods.map((s) =>
+                                  localizedMethods.find((s2) => s2.value === s)
+                                ),
+                              ]}
+                              value={filters.methods.map((s) =>
+                                localizedMethods.find((s2) => s2.value === s)
+                              )}
+                              onChange={(methods: string[]) => {
+                                // console.log("sttt", statuses);
+                                setFilters((state) => ({
+                                  ...state,
+                                  methods,
+                                }));
+                              }}
+                            ></Select>
                           </FormControl>
                         </div>
                         <div className="col-md-4">
@@ -327,26 +400,14 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                               maxTagCount={5}
                               style={{ width: "100%" }}
                               onChange={(statuses: string[]) => {
-                                console.log("sttt", statuses);
-                                if (
-                                  filters.statuses === defaultFilter.statuses ||
-                                  filters.statuses.includes("ALL")
-                                ) {
-                                  setFilters((state) => ({
-                                    ...state,
-                                    statuses: ["ALL"],
-                                  }));
-                                } else {
-                                  setFilters((state) => ({
-                                    ...state,
-                                    statuses: statuses.filter(
-                                      (s) => s !== "ALL"
-                                    ),
-                                  }));
-                                }
+                                // console.log("sttt", statuses);
+                                setFilters((state) => ({
+                                  ...state,
+                                  statuses,
+                                }));
                               }}
                               options={[
-                                localizedStatuses[0],
+                                // localizedStatuses[0],
                                 ...defaultFilter.statuses.map((s) =>
                                   localizedStatuses.find((s2) => s2.value === s)
                                 ),
@@ -362,6 +423,7 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                             <FormLabel>Заказчик или организатор:</FormLabel>
                             <Input
                               style={{
+                                height: "30px",
                                 background: "white",
                                 borderRadius: "0.5em !important",
                               }}
