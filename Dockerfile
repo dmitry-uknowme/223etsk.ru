@@ -7,12 +7,14 @@ EXPOSE 3000
 
 
 FROM base as prod
+RUN yarn 
 ENV NODE_ENV=production
 # RUN npm ci
 COPY . /
 CMD ["yarn", "prod"]
 
 FROM base as dev
+# RUN yarn 
 ENV NODE_ENV=development
 # RUN yarn
 COPY . /
