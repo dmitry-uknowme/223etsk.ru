@@ -1,3 +1,7 @@
+# name: Dump GitHub context
+# env:
+#   GITHUB_CONTEXT: ${{ toJson(github) }}
+#   run: echo "$GITHUB_CONTEXT"
 name: deploy
 on:
   push:
@@ -7,6 +11,8 @@ on:
     - cron: '0 0 * * *' # Everyday at 12am
 jobs:
   build-and-deploy:
+    env:
+      GITHUB_CONTEXT: ${{ toJson(github) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +21,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16'
-
 #       - run: npm install
 #       - run: npm run build
 
@@ -26,7 +31,9 @@ jobs:
           known_hosts: unnecessary
 
       - name: Adding Known Hosts
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT}} ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+        #run: ssh-keyscan -p ${{ secrets.SSH_PORT}} ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
+        run: echo "$GITHUB_CONTEXT"
+        
 
 #       - name: Deploy with rsync
 #         run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/223etsk.ru/
