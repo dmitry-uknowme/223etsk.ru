@@ -23,10 +23,11 @@ interface IErrorResponse {
 //   total_count: 361;
 // }
 
-const fetchTender: Promise<ISuccessResponse> = async (tenderId: string) => {
+const fetchTender = async (tenderId: string) => {
   try {
-    const { data } = await axios.get(`${API_URL}/tenders/${tenderId}`);
-    return data.data as ISuccessResponse;
+    const { data } = await axios.get(`${API_URL}/procedures/${tenderId}`);
+    // console.log("tttttttttttt", data);
+    return data;
     // tender = data.data;
   } catch (e: any) {
     return {

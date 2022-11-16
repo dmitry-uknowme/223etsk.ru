@@ -3,7 +3,7 @@
     "dev": "npm run server",
     "container:dev": "docker-compose up --build -d server",
     "container:prod": "docker-compose up --build -d server-prod",
-    "containers-stop": "docker-compose down -v --remove-orphans",
+    "containers-stop": "sudo docker-compose down -v --remove-orphans",
     "prod": "yarn run build && yarn run server:prod",
     "build": "vite build && vite build --ssr",
     "server": "cross-env NODE_ENV=development cross-env PORT=4000 ts-node ./server",

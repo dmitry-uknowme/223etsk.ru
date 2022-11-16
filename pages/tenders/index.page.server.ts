@@ -10,7 +10,7 @@ async function onBeforeRender(pageContext: PageContextBuiltIn) {
   let tenders = null;
   let tendersCount = 0;
   const { url } = pageContext;
-  if (url !== "/tenders") return null;
+  if (url !== "/tenders") return;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery("tenders", async () => {
     const data = await searchTenders();

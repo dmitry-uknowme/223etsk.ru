@@ -42,8 +42,12 @@ interface TendersPageProps {
 }
 
 const localizedSections = [
-  { id: 1, value: "COMMERCIAL", label: "Коммерческие торги" },
-  { id: 2, value: "FZ223", label: "223-ФЗ" },
+  {
+    id: 1,
+    value: "SECTION_COMMERCIAL_PROCEDURES",
+    label: "Коммерческие торги",
+  },
+  { id: 2, value: "SECTION_223_FZ", label: "223-ФЗ" },
 ];
 
 const localizedStatuses = [
@@ -77,6 +81,11 @@ const localizedStatuses = [
     value: ITenderStatusVariants.BIDDING_COMPLETED,
     label: "Торги завершены",
   },
+  {
+    id: 6,
+    value: ITenderStatusVariants.ACTIVE,
+    label: "Опубликована",
+  },
 ];
 
 const localizedMethods = [
@@ -92,32 +101,42 @@ const localizedMethods = [
   },
   {
     id: 3,
+    value: ITenderMethodVariants.AUCTION_LOWER,
+    label: "Аукцион на понижение",
+  },
+  {
+    id: 4,
     value: ITenderMethodVariants.COMPETITIVE_SELECTION,
     label: "Конкурентный отбор",
   },
   {
-    id: 4,
+    id: 5,
     value: ITenderMethodVariants.CONTEST,
     label: "Конкурс",
   },
   {
-    id: 5,
+    id: 6,
     value: ITenderMethodVariants.MAKE_OFFERS,
     label: "Предложение делать оферты",
   },
   {
-    id: 6,
+    id: 7,
     value: ITenderMethodVariants.REQUEST_OFFERS,
     label: "Запрос предложений",
   },
   {
-    id: 7,
+    id: 8,
     value: ITenderMethodVariants.REQUEST_QUOTATION,
     label: "Запрос котировок",
   },
   {
-    id: 8,
+    id: 9,
     value: ITenderMethodVariants.TWO_STAGE_AUCTION,
+    label: "Двухэтапный аукцион",
+  },
+  {
+    id: 10,
+    value: ITenderMethodVariants.REQUEST_PRICE,
     label: "Двухэтапный аукцион",
   },
 ];
@@ -140,13 +159,13 @@ const TendersPage: React.FC<TendersPageProps> = () => {
         items: data.data,
         itemsCount: data.total_count,
       };
-    },
-    {
-      placeholderData: {
-        items: new Array(10).fill(tenderFixture),
-        itemsCount: 10,
-      },
     }
+    // {
+    //   placeholderData: {
+    //     items: new Array(10).fill(tenderFixture),
+    //     itemsCount: 10,
+    //   },
+    // }
   );
   const tenders = query?.data?.items as ITender[];
   const tendersCount = query?.data?.itemsCount;
@@ -451,7 +470,7 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                         </th>
                         <th>Секция размещения</th>
                         <th>Способ проведения</th>
-                        <th>Начальная цена</th>
+                        <th style={{ width: "13%" }}>Начальная цена</th>
                         <th>Организатор</th>
                         <th>Дата начала подачи заявок</th>
                         <th>Дата окончания подачи заявок</th>
@@ -465,13 +484,18 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                             <tr
                               key={tender.id}
                               onClick={() =>
+                                // window.history.pushState(
+                                //   null,
+                                //   "",
+                                //   `/tenders/${tender.id}`
+                                // )
                                 window.location.replace(`/tenders/${tender.id}`)
                               }
                             >
                               <td>
                                 <a className="text-primary">
                                   {query.isPlaceholderData ?? "prevvv"}
-                                  {tender.number}
+                                  {tender.number}/1
                                 </a>
                               </td>
                               <td>
@@ -526,7 +550,9 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                               <td className="tender_date">
                                 {tender.close_bid_date}
                               </td>
-                              <td className="tender_date">26.04.2022 10:00</td>
+                              <td className="tender_date">
+                                {tender.start_trade_date}
+                              </td>
                               <td>
                                 <p
                                   className="text-muted"

@@ -19,16 +19,18 @@ export const defaultFilter = {
   customer: {
     query_name: "",
   },
-  sections: ["COMMERCIAL", "FZ223"],
+  sections: ["SECTION_COMMERCIAL_PROCEDURES", "SECTION_223_FZ"],
   methods: [
-    // ITenderMethodVariants.AUCTION_LOWER,
     ITenderMethodVariants.AUCTION,
-    ITenderMethodVariants.TWO_STAGE_AUCTION,
     ITenderMethodVariants.AUCTION_DOWN,
+    ITenderMethodVariants.AUCTION_LOWER,
+    ITenderMethodVariants.TWO_STAGE_AUCTION,
     ITenderMethodVariants.CONTEST,
     ITenderMethodVariants.REQUEST_QUOTATION,
+    ITenderMethodVariants.REQUEST_OFFERS,
     ITenderMethodVariants.MAKE_OFFERS,
     ITenderMethodVariants.COMPETITIVE_SELECTION,
+    ITenderMethodVariants.REQUEST_PRICE,
   ],
   // sort: {
   //   name: "SORT_PUBLISHED_AT",
@@ -36,7 +38,7 @@ export const defaultFilter = {
   // },
   statuses: [
     // ITenderStatusVariants.NEW,
-    // ITenderStatusVariants.ACTIVE,
+    ITenderStatusVariants.ACTIVE,
     ITenderStatusVariants.ACCEPTING_APPLICATIONS,
     ITenderStatusVariants.REVIEW_APPLICATIONS,
     // ITenderStatusVariants.REVIEW_BIDS_DATE,
