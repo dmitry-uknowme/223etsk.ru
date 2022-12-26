@@ -25,6 +25,7 @@ const Header = () => {
                     <div className="col-md-2">
                         <Button
                             label="Вход"
+                            link="https://lk.novorostorgi.ru/"
                             variant={ButtonVariants.SECONDARY}
                         />
                     </div>

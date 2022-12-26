@@ -57,7 +57,6 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                 <Card>
                   <Card.Header>Основные сведения</Card.Header>
                   <Card.Body>
-                    {/* <div className="d-flex flex-wrap"> */}
                     <table
                       className="table-responsive table-bordered"
                       style={{ width: "96%", margin: "0 2%" }}
@@ -82,7 +81,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.platform_type_localized}
+                            {/* {notice.platform_type_localized} */}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -456,24 +455,6 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
               </div>
             </>
           )}
-          {/* {notice && (
-            <>
-              <div className="d-flex align-items-center">
-                <h2 className="text-black m-0">Закупка №</h2>
-                <Button
-                  label="Подать заявку"
-                  variant={ButtonVariants.SECONDARY}
-                  className={styles.tender__btn}
-                />
-              </div>
-              <div className="col-md-9 mt-3">
-                <TenderCard tender={tender} />
-              </div>
-              <div className="col-md-3">
-                <TenderNav />
-              </div>
-            </>
-          )} */}
         </div>
       </div>
     </MainLayout>

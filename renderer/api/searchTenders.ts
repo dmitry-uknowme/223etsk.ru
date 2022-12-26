@@ -54,7 +54,8 @@ const searchTenders = async (filters?: IFilter) => {
     filters = defaultFilter;
   }
 
-  const { data } = await axios.post(`${API_URL}/procedures`, filters);
+  const { data } = await axios.post(`${API_URL}/procedures/search`, filters);
+  // const { data } = await axios.post(`${API_URL}/procedures/search`, filters);
   return data;
 };
 

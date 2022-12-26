@@ -6,9 +6,9 @@ const items: INavbarItem[] = [
   { id: 0, label: "Закупки", link: "/tenders" },
   // { id: 1, label: "Клиентам", link: "/users" },
   // { id: 2, label: "Услуги и сервисы", link: "/services" },
-  { id: 3, label: "Тарифы", link: "/pricelist" },
-  { id: 4, label: "Помощь", link: "/support" },
-  { id: 5, label: "О площадке", link: "/about" },
+  { id: 1, label: "Тарифы", link: "/pricelist" },
+  { id: 2, label: "Помощь", link: "/support" },
+  // { id: 5, label: "О площадке", link: "/about" },
 ];
 
 const HeaderNavbar = () => {

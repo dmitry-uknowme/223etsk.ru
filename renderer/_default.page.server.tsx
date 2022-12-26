@@ -34,8 +34,8 @@ async function render(pageContext: PageContextBuiltIn & PageContext) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext;
-  const title = (documentProps && documentProps.title) || "ЭТП ЭТСК";
-  const desc = (documentProps && documentProps.description) || "ЭТП ЭТСК";
+  const title = (documentProps && documentProps.title) || "ЭТП Новорос-ТОРГИ";
+  const desc = (documentProps && documentProps.description) || "ЭТП Новорос-ТОРГИ";
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">

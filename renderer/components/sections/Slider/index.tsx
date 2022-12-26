@@ -11,11 +11,11 @@ const Slider = () => {
                     проведения <br />
                     эффективных закупок
                 </h1>
-                <p className={`${styles.slider__desc} mt-3`}>
+                {/* <p className={`${styles.slider__desc} mt-3`}>
                     Задача организации, в особенности же постоянный
                     количественный рост и сфера нашей активности требуют от нас
                     анализа новых предложений.
-                </p>
+                </p> */}
                 <div className="slider__search mt-5">
                     <div className="row align-items-center">
                         <div className="col-md-6">

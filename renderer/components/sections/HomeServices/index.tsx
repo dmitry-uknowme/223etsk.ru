@@ -26,7 +26,7 @@ const HomeServices = () => {
             <div className="container mt-5">
                 <h3>Услуги и сервисы</h3>
                 <div className="mt-5">
-                    <Services items={services} />;
+                    <Services items={services} />
                 </div>
             </div>
         </div>

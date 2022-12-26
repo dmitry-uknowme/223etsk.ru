@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "../../../Link";
 // import styles from "./index.sass";
 
 export enum ButtonVariants {
@@ -14,6 +15,7 @@ interface ButtonProps {
   style?: React.CSSProperties;
   variant?: ButtonVariants | ButtonVariants.PRIMARY;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  link?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,15 +25,27 @@ const Button: React.FC<ButtonProps> = ({
   className,
   children,
   style,
+  link
 }) => {
   return (
-    <button
-      className={`btn btn-${variant} ${className}`}
-      style={style}
-      onClick={onClick}
-    >
-      {label} {children}
-    </button>
+    <>
+      {link ? (<Link href={link}>
+        <button
+          className={`btn btn-${variant} ${className}`}
+          style={style}
+          onClick={onClick}
+        >
+          {label} {children}
+        </button>
+      </Link>) : <button
+        className={`btn btn-${variant} ${className}`}
+        style={style}
+        onClick={onClick}
+      >
+        {label} {children}
+      </button>
+      }
+    </>
   );
 };
 

@@ -16,12 +16,12 @@ const sections: ISectionItem[] = [
         btnText: "Перейти к закупкам",
         btnOnClick: () => null,
     },
-    {
-        title: "ЭТСК-маркет",
-        desc: "Электронный магазин для проведения закупок и продаж малого бизнеса",
-        btnText: "Перейти в маркет",
-        btnOnClick: () => null,
-    },
+    // {
+    //     title: "ЭТСК-маркет",
+    //     desc: "Электронный магазин для проведения закупок и продаж малого бизнеса",
+    //     btnText: "Перейти в маркет",
+    //     btnOnClick: () => null,
+    // },
 ];
 
 const HomeSections = () => {
@@ -30,7 +30,7 @@ const HomeSections = () => {
             <div className="container mt-5">
                 <h3>Секции размещения</h3>
                 <div className="mt-5">
-                    <Sections items={sections} />;
+                    <Sections items={sections} />
                 </div>
             </div>
         </div>
