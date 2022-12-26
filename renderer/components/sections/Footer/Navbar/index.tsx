@@ -38,12 +38,12 @@ const FooterNavbar = () => {
                 Новости
               </a>
             </div> */}
-            {/* <div className="col-md-4 offset-md-2">
+            <div className="col-md-4 offset-md-2">
               <a className={styles.navbar__item} href="/about">
                 О площадке
               </a>
-            </div> */}
-            <div className="col-md-4 offset-md-2">
+            </div>
+            <div className="col-md-4">
               <a className={styles.navbar__item} href="/support">
                 Помощь
               </a>
