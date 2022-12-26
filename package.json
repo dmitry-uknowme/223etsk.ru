@@ -7,7 +7,7 @@
     "prod": "yarn run build && yarn run server:prod",
     "build": "vite build && vite build --ssr",
     "server": "cross-env NODE_ENV=development cross-env PORT=4000 ts-node ./server",
-    "server:prod": "cross-env NODE_ENV=production cross-env PORT=3020 ts-node ./server",
+    "server:prod": "cross-env NODE_ENV=production cross-env PORT=3050 ts-node ./server",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

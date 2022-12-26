@@ -20,8 +20,7 @@ services:
       - .:/app
     command: yarn run prod
     ports:
-      - "3020:3020"
+      - "3050:3050"
     environment:
       NODE_ENV: production
       # DEBUG: nodejs-docker-express:*
-  
