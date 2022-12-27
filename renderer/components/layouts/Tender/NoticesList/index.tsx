@@ -64,7 +64,8 @@ const NoticesList = ({ notices }: any) => {
                     textAlign: "center",
                   }}
                 >
-                  {notice.title}
+                  Извещение о проведении закупки
+                  {/* {notice.title} */}
                 </td>
                 <td
                   style={{

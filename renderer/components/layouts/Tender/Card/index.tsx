@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styles from "./index.module.sass";
 import ProtocolsList from "../ProtocolsList";
 import NoticesList from "../NoticesList";
+import fetchLotPositions from "../../../../api/fetchLotPositions";
+import { useQuery } from "react-query";
 
 interface TenderCardProps {
   tender: any;
@@ -10,11 +12,19 @@ interface TenderCardProps {
 
 const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
   const lot = tender?.lots[0];
+  const lotId = lot.id;
   const date_time = lot.date_time;
   const organizer = tender.organizer;
   const customer = tender.customer;
   const protocol = tender.protocols[0];
-  console.log("prrrrrrrr", protocol);
+
+  const positionsQuery = useQuery(["lotPositions"], async () => {
+    const positions = await fetchLotPositions(lotId);
+    return positions;
+  });
+
+  const lotPositions = positionsQuery?.data;
+  // console.log("prrrrrrrr", protocol);
   const [data, setData] = useState([
     {
       title: "Сведения о закупке",
@@ -173,6 +183,362 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
       </div>
       <div className="mt-4">
         <ProtocolsList protocols={tender.protocols} />
+      </div>
+      <div className="mt-4">
+        <Card>
+          <Card.Header>Лот №1</Card.Header>
+          <Card.Body>
+            {/* <div className="d-flex flex-wrap"> */}
+            <div
+              style={{
+                background: "#FF3838",
+                width: "96%",
+                height: "2rem",
+                marginLeft: "2%",
+                borderRadius: "1em 1em 0 0",
+                display: "flex",
+                alignItems: "center",
+                padding: "1rem",
+              }}
+            >
+              <h4
+                style={{
+                  fontSize: "0.8rem",
+                  marginBottom: "0",
+                  fontWeight: 600,
+                  color: "#fff",
+                }}
+              >
+                Общие сведения
+              </h4>
+            </div>
+            <table
+              className="table-responsive table-bordered"
+              style={{ width: "96%", margin: "0 2%" }}
+            >
+              <tbody>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Наименование
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.name}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Начальная цена
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.price.amount}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время начала подачи заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.start_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время окончания подачи заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.close_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время рассмотрения и оценки заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.summing_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время подведения итогов
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.summing_up_date}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div
+              style={{
+                background: "#FF3838",
+                width: "96%",
+                height: "2rem",
+                marginLeft: "2%",
+                borderRadius: "1em 1em 0 0",
+                display: "flex",
+                alignItems: "center",
+                padding: "1rem",
+                marginTop: "1.5rem",
+              }}
+            >
+              <h4
+                style={{
+                  fontSize: "0.8rem",
+                  marginBottom: "0",
+                  fontWeight: 600,
+                  color: "#fff",
+                }}
+              >
+                Перечень товаров, работ, услуг
+              </h4>
+            </div>
+            <table
+              className="table-responsive table-bordered"
+              style={{ width: "96%", margin: "0 2%" }}
+            >
+              <thead>
+                <tr>
+                  <th className="table-row-key" style={{ width: "50px" }}>
+                    №
+                  </th>
+                  <th className="table-row-key" style={{ width: "50px" }}>
+                    Количество, Ед. измерения
+                  </th>
+                  <th className="table-row-key" style={{ width: "150px" }}>
+                    ОКПД 2
+                  </th>
+                  <th className="table-row-key" style={{ width: "150px" }}>
+                    ОКВЭД 2
+                  </th>
+                  <th className="table-row-key" style={{ width: "150px" }}>
+                    Место поставки
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {lotPositions?.map((position, number) => (
+                  <tr>
+                    <td className="table-row-value" style={{ width: "50px" }}>
+                      {number + 1}
+                    </td>
+                    <td className="table-row-value" style={{ width: "50px" }}>
+                      {position.qty}, {position.unit_name}
+                    </td>
+                    <td className="table-row-value" style={{ width: "150px" }}>
+                      {position.okpd_code}. {position.okpd_name}
+                    </td>
+                    <td className="table-row-value" style={{ width: "150px" }}>
+                      {position.okved_code}. {position.okved_name}
+                    </td>
+                    <td className="table-row-value" style={{ width: "150px" }}>
+                      {position.region_name}. {position.region_address}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              {/* <tbody>
+                <tr style={{ width: "100%" }}>
+                  <td className="table-row-key">Наименование</td>
+                  <td className="table-row-value">{tender.name}</td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Начальная цена
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.price.amount}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время начала подачи заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.start_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время окончания подачи заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.close_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время рассмотрения и оценки заявок
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.summing_bid_date}
+                  </td>
+                </tr>
+                <tr style={{ width: "100%" }}>
+                  <td
+                    className="text-muted"
+                    style={{
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.85rem",
+                      width: "50%",
+                    }}
+                  >
+                    Дата и время подведения итогов
+                  </td>
+                  <td
+                    style={{
+                      fontWeight: "500",
+                      padding: "0.2rem 0.6rem",
+                      fontSize: "0.9rem",
+                      width: "50%",
+                    }}
+                  >
+                    {tender.summing_up_date}
+                  </td>
+                </tr>
+              </tbody> */}
+            </table>
+            {/* </div> */}
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );

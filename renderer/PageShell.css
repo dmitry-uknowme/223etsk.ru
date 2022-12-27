@@ -17,3 +17,17 @@ a {
 .navitem.is-active {
   background-color: #eee;
 }
+
+.table-row-key {
+  color: #6c757d !important;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+  width: 50%;
+}
+
+.table-row-value {
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.9rem;
+  width: 50%;
+}

@@ -17,13 +17,25 @@ interface NoticePageProps {
 }
 
 const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
-  const query = useQuery("notice", async () => {
+  const noticeQuery = useQuery("notice", async () => {
     const data = await fetchNotice(noticeId);
     return {
       notice: data,
     };
   });
-  const notice = query.data?.notice as INotice;
+  const notice = noticeQuery.data?.notice as INotice;
+  const procedureId = notice?.procedure_id;
+
+  const procedureQuery = useQuery("procedure", async () => {
+    const data = await fetchTender(procedureId);
+    return data;
+  });
+
+  const procedure = procedureQuery?.data;
+
+  // console.log("proceocoeoce", procedure);
+
+  const lot = procedure?.lots[0];
 
   return (
     <MainLayout>
