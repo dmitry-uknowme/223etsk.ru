@@ -119,6 +119,53 @@ const AboutPage = () => {
                                 </Card.Body>
                             </Card>
                         </div>
+                        <div className="col-md-10 mt-3">
+                            <Card>
+                                <Card.Header>База знаний</Card.Header>
+                                <Card.Body>
+                                    <div className="d-flex flex-wrap">
+                                        {/* {items.map(({ label, value }) => ( */}
+                                        <table
+                                            className="table-responsive table-bordered mt-3"
+                                            style={{ marginLeft: "1rem" }}
+                                        >
+                                            <tbody>
+                                                {reqData.map(
+                                                    ({ label, value }) => (
+                                                        <tr>
+                                                            <td
+                                                                className="text-muted"
+                                                                style={{
+                                                                    padding:
+                                                                        "0.2rem 0.6rem",
+                                                                    fontSize:
+                                                                        "0.85rem",
+                                                                }}
+                                                            >
+                                                                {label}:
+                                                            </td>
+                                                            <td
+                                                                style={{
+                                                                    fontWeight:
+                                                                        "500",
+                                                                    padding:
+                                                                        "0.2rem 0.6rem",
+                                                                    fontSize:
+                                                                        "0.9rem",
+                                                                }}
+                                                            >
+                                                                {value}
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                )}
+                                            </tbody>
+                                        </table>
+                                        {/* ))} */}
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     </div>
                 </div>
             </div>
