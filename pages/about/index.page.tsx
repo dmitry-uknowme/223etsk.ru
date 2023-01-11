@@ -31,22 +31,22 @@ const reqData = [
         label: "ОГРН",
         value: "1150280004071",
     },
-    // {
-    //     label: "Расчётный счет",
-    //     value: "41272818941942189482",
-    // },
-    // {
-    //     label: "Корреспондентский счет",
-    //     value: "49128912494910289219",
-    // },
-    // {
-    //     label: "БИК банка",
-    //     value: "897421978",
-    // },
-    // {
-    //     label: "Банк",
-    //     value: 'АО "ТИНЬКОФФ БАНК"',
-    // },
+    {
+        label: "Расчётный счет",
+        value: "40702810806000002043",
+    },
+    {
+        label: "Корреспондентский счет",
+        value: "30101810300000000601",
+    },
+    {
+        label: "БИК банка",
+        value: "048073601",
+    },
+    {
+        label: "Банк",
+        value: 'Башкирское отделение №8598 ПАО «Сбербанк России»',
+    },
     {
         label: "Номер телефона",
         value: "8-800-350-65-79",
@@ -119,12 +119,11 @@ const AboutPage = () => {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className="col-md-10 mt-3">
+                        {/* <div className="col-md-10 mt-3">
                             <Card>
                                 <Card.Header>База знаний</Card.Header>
                                 <Card.Body>
                                     <div className="d-flex flex-wrap">
-                                        {/* {items.map(({ label, value }) => ( */}
                                         <table
                                             className="table-responsive table-bordered mt-3"
                                             style={{ marginLeft: "1rem" }}
@@ -161,11 +160,10 @@ const AboutPage = () => {
                                                 )}
                                             </tbody>
                                         </table>
-                                        {/* ))} */}
                                     </div>
                                 </Card.Body>
                             </Card>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
