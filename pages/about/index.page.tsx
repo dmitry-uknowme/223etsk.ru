@@ -119,12 +119,11 @@ const AboutPage = () => {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className="col-md-10 mt-3">
+                        {/* <div className="col-md-10 mt-3">
                             <Card>
                                 <Card.Header>База знаний</Card.Header>
                                 <Card.Body>
                                     <div className="d-flex flex-wrap">
-                                        {/* {items.map(({ label, value }) => ( */}
                                         <table
                                             className="table-responsive table-bordered mt-3"
                                             style={{ marginLeft: "1rem" }}
@@ -161,11 +160,10 @@ const AboutPage = () => {
                                                 )}
                                             </tbody>
                                         </table>
-                                        {/* ))} */}
                                     </div>
                                 </Card.Body>
                             </Card>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
