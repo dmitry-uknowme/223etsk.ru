@@ -35,7 +35,7 @@ const HomeStart = () => {
                         <div className="col-md-4 offset-md-1">
                             <StartCard
                                 title="Заказчикам"
-                                desc="Много заказчиков уже оптимизировали свою закупочную деятельность с помощью ЭТСК ЭТП"
+                                desc="Оптимизируйте закупочную деятельность с помощью ЭТП Новорос Торги"
                                 btnPrimaryText="Стать заказчиком"
                                 btnPrimaryLink="/customers"
                             />
