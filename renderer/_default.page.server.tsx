@@ -34,8 +34,8 @@ async function render(pageContext: PageContextBuiltIn & PageContext) {
 
   // See https://vite-plugin-ssr.com/head
   const { documentProps } = pageContext;
-  const title = (documentProps && documentProps.title) || "ЭТП Новорос-ТОРГИ";
-  const desc = (documentProps && documentProps.description) || "ЭТП Новорос-ТОРГИ";
+  const title = (documentProps && documentProps.title) || "ЭТП НоворосТорги";
+  const desc = (documentProps && documentProps.description) || "ЭТП НоворосТорги";
 
   // <link rel="icon" href="${logoUrl}" />
 
