@@ -17,7 +17,7 @@ const FooterNavbar = () => {
               </a>
             </div>
             <div className="col-md-4">
-              <a className={styles.navbar__item} href="/news">
+              <a className={styles.navbar__item} href="/pricelist">
                 Тарифы
               </a>
             </div>

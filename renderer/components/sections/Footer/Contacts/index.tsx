@@ -21,12 +21,7 @@ const FooterContacts = () => {
                         8-800-350-65-79
                     </div>
                 </div> */}
-                <div className="col-md-12">
-                    <div className={styles.contacts__address}>
-                        {/* 450062, г.Уфа, ул. Мира, 54 */}
-                        450018, г. Уфа, ул. Кооперативная, д. 67
-                    </div>
-                </div>
+
             </div>
         </div>
     );
