@@ -9,8 +9,8 @@ const Services: React.FC<ServicesProps> = ({ items }) => {
     return (
         <div className="sections">
             <div className="row">
-                {items.map((item) => (
-                    <div className="col-md-4">
+                {items.map((item, id) => (
+                    <div className={`col-md-4 ${id !== 0 ? 'mt-sm-4 mt-4' : ""}`}>
                         <ServiceCard service={item} />
                     </div>
                 ))}

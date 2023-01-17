@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 const fetchFeedbackFormTypes = async () => {
   try {
     const { data } = await axios.get(
-      "https://com.etpp.ru/api/feedback/get/types"
+      "https://lk.novorostorgi.ru/api/feedback/get/types"
     );
     const userRoles = data.data.organization_type;
     return {

@@ -27,6 +27,7 @@ import HistoryBar from "../../renderer/components/layouts/HistoryBar";
 import MainLayout from "../../renderer/components/layouts/MainLayout";
 import fetchFeedbackFormTypes from "../../renderer/api/fetchFeedbackFormTypes";
 import { useQuery } from "react-query";
+import axios from "axios";
 
 const SupportPage = () => {
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
@@ -45,10 +46,10 @@ const SupportPage = () => {
     formState: { errors, isSubmitting, isSubmitted },
   } = useForm();
 
-  console.log("subbb", isSubmitted);
   const isAccreditedValue = watch("accredit_status");
 
   const onSubmit = async (values) => {
+    // axios.post('')
     console.log("valll", {
       type: values.type,
       type_organization: values.user_role,

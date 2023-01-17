@@ -6,17 +6,15 @@ const FooterNavbar = () => {
   return (
     <div className={styles.navbar}>
       <div className="row">
-        <div className="col-md-3">
-          <Logo />
-        </div>
-        <div className="col-md-9">
-          <div className={`${styles.navbar__menu} row`}>
-            <div className="col-md-4 offset-md-2">
+
+        <div className="col-md-8 col-8">
+          <div className={`${styles.navbar__menu} row align-items-center`}>
+            <div className="col-md-4 col-6 offset-0 offset-md-2">
               <a className={styles.navbar__item} href="/tenders">
                 Закупки
               </a>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 col-6">
               <a className={styles.navbar__item} href="/pricelist">
                 Тарифы
               </a>
@@ -38,17 +36,19 @@ const FooterNavbar = () => {
                 Новости
               </a>
             </div> */}
-            <div className="col-md-4 offset-md-2">
+            <div className="col-md-4 col-6 offset-0 offset-md-2">
               <a className={styles.navbar__item} href="/about">
                 О площадке
               </a>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 col-6">
               <a className={styles.navbar__item} href="/support">
                 Помощь
               </a>
             </div>
           </div>
+        </div> <div className="col-md-4 col-4">
+          <Logo />
         </div>
       </div>
     </div>

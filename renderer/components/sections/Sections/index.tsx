@@ -10,8 +10,8 @@ const Sections: React.FC<SectionsProps> = ({ items }) => {
     return (
         <div className="sections">
             <div className="row">
-                {items.map((item) => (
-                    <div className="col-md-4">
+                {items.map((item, id) => (
+                    <div className={`col-md-4 ${id !== 0 ? 'mt-sm-4 mt-4' : ""}`}>
                         <Link href="/tenders">
                             <SectionCard section={item} />
                         </Link>

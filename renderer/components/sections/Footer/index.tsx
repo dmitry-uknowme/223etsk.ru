@@ -8,14 +8,15 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className="container">
-        <div className="row">
-          <div className="col-md-7">
+        <div className="row align-items-center">
+          <div className="col-md-6 col-sm-6">
             <div className="footer__data">
               <Contacts />
-              <Navbar />
             </div>
           </div>
-
+          <div className="col-md-6 col-sm-6">
+            <Navbar />
+          </div>
         </div>
       </div>
     </div>

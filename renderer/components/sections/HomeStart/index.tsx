@@ -26,13 +26,13 @@ const HomeStart = () => {
                                 btnPrimaryLink="/suppliers"
                             />
                         </div>
-                        <div className="col-md-2 offset-md-1">
+                        <div className="col-md-2 offset-md-1 d-none d-sm-node d-md-block">
                             <div className="d-flex justify-content-between">
-                                <img src={ArrowLeftIcon} />
-                                <img src={ArrowRightIcon} />
+                                <img className="d-none d-sm-node d-md-block" src={ArrowLeftIcon} />
+                                <img className="d-none d-sm-node d-md-block" src={ArrowRightIcon} />
                             </div>
                         </div>
-                        <div className="col-md-4 offset-md-1">
+                        <div className="col-md-4 offset-md-1 mt-sm-4 mt-4">
                             <StartCard
                                 title="Заказчикам"
                                 desc="Оптимизируйте закупочную деятельность с помощью ЭТП НоворосТорги"
