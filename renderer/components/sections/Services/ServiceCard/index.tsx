@@ -18,7 +18,7 @@ const ServiceCard: React.FC<SectionCardProps> = ({ service }) => {
         <div className={styles.card}>
             <h4 className={styles.card__title}>{title}</h4>
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                     <Button
                         variant={ButtonVariants.PRIMARY}
                         label={btnText}

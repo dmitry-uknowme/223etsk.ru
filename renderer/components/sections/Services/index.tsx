@@ -10,7 +10,7 @@ const Services: React.FC<ServicesProps> = ({ items }) => {
         <div className="sections">
             <div className="row">
                 {items.map((item, id) => (
-                    <div className={`col-md-4 ${id !== 0 ? 'mt-sm-4 mt-4' : ""}`}>
+                    <div className={`col-md-4 ${id !== 0 ? 'mt-sm-4 mt-4 mt-md-0' : ""}`}>
                         <ServiceCard service={item} />
                     </div>
                 ))}

@@ -22,7 +22,7 @@ const SectionCard: React.FC<SectionCardProps> = ({ section }) => {
             <div className={styles.card__divider}></div>
             <p className={styles.card__desc}>{desc}</p>
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                     <Button
                         variant={ButtonVariants.PRIMARY}
                         label={btnText}
