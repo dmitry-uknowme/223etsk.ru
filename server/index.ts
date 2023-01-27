@@ -11,12 +11,12 @@ startServer();
 async function startServer() {
   const app = express();
   const publicDir = path.resolve("../", __dirname, root, "public");
+  console.log("pubbbb", publicDir);
   app.use(compression());
-  console.log("rrrrr", root);
+  app.use("/public", express.static(publicDir));
   let viteDevServer;
   if (isProduction) {
-    app.use(express.static(`../${root}`));
-    // app.use(express.static(`${root}/dist/client`));
+    app.use(express.static(`${root}/dist/client`));
   } else {
     const vite = require("vite");
     viteDevServer = await vite.createServer({
@@ -25,8 +25,6 @@ async function startServer() {
     });
     app.use(viteDevServer.middlewares);
   }
-
-  app.use(express.static(publicDir));
 
   const renderPage = createPageRenderer({
     viteDevServer,
