@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "../../../../Link";
 import Button, { ButtonVariants } from "../../../ui/Button";
 import styles from "./index.module.sass";
 
@@ -13,17 +14,23 @@ interface SectionCardProps {
 }
 
 const ServiceCard: React.FC<SectionCardProps> = ({ service }) => {
-    const { title, btnText, btnOnClick } = service;
+    const { title, btnText, btnOnClick, link } = service;
     return (
         <div className={styles.card}>
             <h4 className={styles.card__title}>{title}</h4>
             <div className="row">
                 <div className="col-md-12">
-                    <Button
+                    {link ? <Link href={link}>
+                        <Button
+                            variant={ButtonVariants.PRIMARY}
+                            label={btnText}
+                            className={styles.card__btn}
+                        />
+                    </Link> : <Button
                         variant={ButtonVariants.PRIMARY}
                         label={btnText}
                         className={styles.card__btn}
-                    />
+                    />}
                 </div>
             </div>
         </div>

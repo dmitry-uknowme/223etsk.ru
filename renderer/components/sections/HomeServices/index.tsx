@@ -7,6 +7,7 @@ const services: IServiceItem[] = [
         title: "Электронная подпись",
         btnText: "Подробнее",
         btnOnClick: () => null,
+        link: "https://elpod.novorostorgi.ru/"
     },
     {
         title: "Обучение по торгам",
