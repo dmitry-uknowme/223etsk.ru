@@ -83,6 +83,11 @@ const localizedStatuses = [
   },
   {
     id: 6,
+    value: 'STATUS_CANCEL',
+    label: "Торги отменены",
+  },
+  {
+    id: 7,
     value: ITenderStatusVariants.ACTIVE,
     label: "Опубликована",
   },
@@ -533,6 +538,7 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                                     margin: "0.2rem 0.4rem",
                                   }}
                                 >
+                                  
                                   {tender.price_localized}
                                 </p>
                               </td>

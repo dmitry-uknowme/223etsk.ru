@@ -258,7 +258,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender.price.amount}
+                    {tender?.price?.amount?` ${(tender.price.amount/100).toFixed(2)} руб.`:'Не предусмотрено'}
                   </td>
                 </tr>
                 <tr style={{ width: "100%" }}>
