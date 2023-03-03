@@ -10,17 +10,25 @@ async function onBeforeRender(pageContext: PageContextBuiltIn) {
   let procedureId = null;
   const { url } = pageContext;
 
-  if (!url.startsWith("/notice/") || url.includes(".")) return;
+  if (
+    (!url.startsWith("/tenders/") && !url.includes("/notice/")) ||
+    url.includes(".")
+  )
+    return;
 
   const noticeId = pageContext.routeParams.noticeId;
+  const tenderId = pageContext.routeParams.tenderId;
   if (!noticeId) return null;
 
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery("notice", async () => {
     const data = await fetchNotice(noticeId);
-    procedureId = data?.procedure_id;
-    return { notice: data };
+    const procedure = await fetchTender(tenderId);
+
+    // console.log("noticeeee", data);
+    procedureId = procedure.id;
+    return { notice: data, procedure: procedure };
   });
   await queryClient.prefetchQuery("procedure", async () => {
     if (!procedureId) return;
@@ -28,7 +36,11 @@ async function onBeforeRender(pageContext: PageContextBuiltIn) {
     return { procedure: data };
   });
 
-  const pageProps = { noticeId, dehydratedState: dehydrate(queryClient) };
+  const pageProps = {
+    noticeId,
+    procedureId,
+    dehydratedState: dehydrate(queryClient),
+  };
   return {
     pageContext: {
       pageProps,

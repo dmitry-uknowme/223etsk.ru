@@ -179,7 +179,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
       ))}
 
       <div className="mt-4">
-        <NoticesList notices={tender.notices} />
+        <NoticesList notices={tender.notices} tender={tender} />
       </div>
       <div className="mt-4">
         <ProtocolsList protocols={tender.protocols} />
@@ -258,7 +258,9 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender?.price?.amount?` ${(tender.price.amount/100).toFixed(2)} руб.`:'Не предусмотрено'}
+                    {tender?.price?.amount
+                      ? ` ${(tender.price.amount / 100).toFixed(2)} руб.`
+                      : "Не предусмотрено"}
                   </td>
                 </tr>
                 <tr style={{ width: "100%" }}>

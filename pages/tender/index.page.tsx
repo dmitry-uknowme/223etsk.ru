@@ -7,6 +7,7 @@ import TenderCard from "../../renderer/components/layouts/Tender/Card";
 import TenderNav from "../../renderer/components/layouts/Tender/Nav";
 import TendersFilter from "../../renderer/components/sections/TendersFilter";
 import Button, { ButtonVariants } from "../../renderer/components/ui/Button";
+import { Link } from "../../renderer/Link";
 import styles from "./index.module.sass";
 
 interface TenderPageProps {
@@ -16,7 +17,7 @@ interface TenderPageProps {
 
 const TenderPage: React.FC<TenderPageProps> = ({ tenderId }) => {
   const query = useQuery(
-    "tenders",
+    "tender",
     async () => {
       const data = await fetchTender(tenderId);
       return {
@@ -66,15 +67,26 @@ const TenderPage: React.FC<TenderPageProps> = ({ tenderId }) => {
               <div className="d-flex align-items-center">
                 <h2 className="text-black m-0">
                   Закупка №{tender.number}/1{" "}
-                  {tender.registry_number
-                    ? `${tender.registry_number} в ЕИС`
-                    : ""}
+                  {tender.registry_number ? (
+                    <Link
+                      href={
+                        "https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=32312166553"
+                      }
+                      style={{ textDecoration: "underline", color: "#111" }}
+                    >
+                      {tender.registry_number}
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </h2>
-                <Button
-                  label="Подать заявку"
-                  variant={ButtonVariants.SECONDARY}
-                  className={styles.tender__btn}
-                />
+                <Link href="https://lk.novorostorgi.ru/procedure/request-quotation/a34384ed-d678-4ce4-98b5-e3838c36f301">
+                  <Button
+                    label="Подать заявку"
+                    variant={ButtonVariants.SECONDARY}
+                    className={styles.tender__btn}
+                  />
+                </Link>
               </div>
               <div className="col-md-9 mt-3">
                 <TenderCard tender={tender} />

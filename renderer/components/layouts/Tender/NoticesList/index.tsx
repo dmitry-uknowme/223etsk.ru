@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../ui/Card";
 
-const NoticesList = ({ notices }: any) => {
+const NoticesList = ({ notices, tender }: any) => {
   return (
     <Card>
       <Card.Header>Извещения</Card.Header>
@@ -53,7 +53,9 @@ const NoticesList = ({ notices }: any) => {
                   //   "",
                   //   `/tenders/${tender.id}`
                   // )
-                  window.location.replace(`/notice/${notice.id}`)
+                  window.location.replace(
+                    `/tenders/${tender.id}/notice/${notice.id}`
+                  )
                 }
               >
                 <td

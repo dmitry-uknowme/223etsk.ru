@@ -9,33 +9,46 @@ import TenderNav from "../../renderer/components/layouts/Tender/Nav";
 import TendersFilter from "../../renderer/components/sections/TendersFilter";
 import Button, { ButtonVariants } from "../../renderer/components/ui/Button";
 import Card from "../../renderer/components/ui/Card";
+import { Link } from "../../renderer/Link";
 import INotice from "../../types/notice";
+import { DownloadIcon } from "@chakra-ui/icons";
 
 interface NoticePageProps {
   noticeId: string;
   serverNotice: any;
 }
 
-const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
+const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
   const noticeQuery = useQuery("notice", async () => {
     const data = await fetchNotice(noticeId);
     return {
       notice: data,
+      // procedure: procedure,
     };
   });
+
+  // console.log("nott", noticeQuery.data);
+
+  const tenderQuery = useQuery("tender", async () => {
+    const data = await fetchTender(procedureId);
+    return {
+      tender: data,
+    };
+  });
+
   const notice = noticeQuery.data?.notice as INotice;
-  const procedureId = notice?.procedure_id;
+  // const procedureId = notice?.procedure_id;
 
   const procedureQuery = useQuery("procedure", async () => {
     const data = await fetchTender(procedureId);
     return data;
   });
 
-  const procedure = procedureQuery?.data;
-
+  const procedure = procedureQuery.data;
+  console.log("procecc", notice);
   // console.log("proceocoeoce", procedure);
 
-  const lot = procedure?.lots[0];
+  // const lot = procedure?.lots[0];
 
   return (
     <MainLayout>
@@ -55,7 +68,9 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                   active: true,
                 },
                 {
-                  label: "Извещение №1",
+                  type: "link_eis",
+                  label: "Извещение № 32312166553",
+                  active: true,
                 },
               ]}
             />
@@ -63,7 +78,17 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
           {notice && (
             <>
               <div className="d-flex align-items-center">
-                <h2 className="text-black m-0">Извещение № {notice.id}</h2>
+                <h2 className="text-black m-0">
+                  <Link
+                    href={
+                      "https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=32312166553"
+                    }
+                    style={{ textDecoration: "underline", color: "#111" }}
+                  >
+                    Извещение № 32312166553
+                  </Link>{" "}
+                  {/* {noticeId} */}
+                </h2>
               </div>
               <div className="mt-3">
                 <Card>
@@ -93,7 +118,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                               width: "50%",
                             }}
                           >
-                            {/* {notice.platform_type_localized} */}
+                            {notice.platform_type_localized}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -115,7 +140,8 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.registry_number}
+                            32312166553
+                            {/* {notice.registry_number} */}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -318,6 +344,132 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
               </div>
               <div className="mt-4">
                 <Card>
+                  <Card.Header>Сведения о заказчике</Card.Header>
+                  <Card.Body>
+                    {/* <div className="d-flex flex-wrap"> */}
+                    <table
+                      className="table-responsive table-bordered"
+                      style={{ width: "96%", margin: "0 2%" }}
+                    >
+                      <tbody>
+                        <tr style={{ width: "100%" }}>
+                          <td
+                            className="text-muted"
+                            style={{
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.85rem",
+                              width: "50%",
+                            }}
+                          >
+                            Наименование:
+                          </td>
+                          <td
+                            style={{
+                              fontWeight: "500",
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.9rem",
+                              width: "50%",
+                            }}
+                          >
+                            {notice.organizer_full_name}
+                          </td>
+                        </tr>
+                        <tr style={{ width: "100%" }}>
+                          <td
+                            className="text-muted"
+                            style={{
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.85rem",
+                              width: "50%",
+                            }}
+                          >
+                            Юридический адрес:
+                          </td>
+                          <td
+                            style={{
+                              fontWeight: "500",
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.9rem",
+                              width: "50%",
+                            }}
+                          >
+                            {notice.organizer_legal_address}
+                          </td>
+                        </tr>
+                        <tr style={{ width: "100%" }}>
+                          <td
+                            className="text-muted"
+                            style={{
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.85rem",
+                              width: "50%",
+                            }}
+                          >
+                            Почтовый адрес:
+                          </td>
+                          <td
+                            style={{
+                              fontWeight: "500",
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.9rem",
+                              width: "50%",
+                            }}
+                          >
+                            {notice.organizer_postal_address}
+                          </td>
+                        </tr>
+                        <tr style={{ width: "100%" }}>
+                          <td
+                            className="text-muted"
+                            style={{
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.85rem",
+                              width: "50%",
+                            }}
+                          >
+                            Контактный номер телефона:
+                          </td>
+                          <td
+                            style={{
+                              fontWeight: "500",
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.9rem",
+                              width: "50%",
+                            }}
+                          >
+                            {notice.organizer_phone}
+                          </td>
+                        </tr>
+                        <tr style={{ width: "100%" }}>
+                          <td
+                            className="text-muted"
+                            style={{
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.85rem",
+                              width: "50%",
+                            }}
+                          >
+                            Адрес электронной почты:
+                          </td>
+                          <td
+                            style={{
+                              fontWeight: "500",
+                              padding: "0.2rem 0.6rem",
+                              fontSize: "0.9rem",
+                              width: "50%",
+                            }}
+                          >
+                            {notice.organizer_email}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    {/* </div> */}
+                  </Card.Body>
+                </Card>
+              </div>
+              <div className="mt-4">
+                <Card>
                   <Card.Header>Лоты</Card.Header>
                   <Card.Body>
                     {/* <div className="d-flex flex-wrap"> */}
@@ -368,7 +520,11 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.price.amount}
+                            {notice?.price?.amount
+                              ? ` ${(notice?.price?.amount / 100).toFixed(
+                                  2
+                                )} руб.`
+                              : "Не предусмотрено"}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -462,6 +618,116 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId }) => {
                       </tbody>
                     </table>
                     {/* </div> */}
+                  </Card.Body>
+                </Card>
+              </div>
+              <div className="mt-4">
+                <Card>
+                  <Card.Header>Документы</Card.Header>
+                  <Card.Body>
+                    <div className="d-flex flex-wrap">
+                      <table
+                        className="table-responsive table-bordered mt-3"
+                        style={{ marginLeft: "1rem", width: "96%" }}
+                      >
+                        <thead>
+                          <tr>
+                            <th
+                              className="text-muted"
+                              style={{
+                                padding: "0.2rem 0.6rem",
+                                fontSize: "0.85rem",
+                              }}
+                            >
+                              Наименование файла
+                            </th>
+                            <th
+                              className="text-muted"
+                              style={{
+                                padding: "0.2rem 0.6rem",
+                                fontSize: "0.85rem",
+                              }}
+                            >
+                              Номер редакции
+                            </th>
+                            <th
+                              className="text-muted"
+                              style={{
+                                padding: "0.2rem 0.6rem",
+                                fontSize: "0.85rem",
+                              }}
+                            >
+                              Дата публикации
+                            </th>
+                            <th
+                              className="text-muted"
+                              style={{
+                                padding: "0.2rem 0.6rem",
+                                fontSize: "0.85rem",
+                                maxWidth: "10%",
+                              }}
+                            >
+                              Ссылка для скачивания
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {notice?.documents?.map((doc) => (
+                            <tr>
+                              <td
+                                style={{
+                                  fontWeight: "500",
+                                  padding: "0.2rem 0.6rem",
+                                  fontSize: "0.9rem",
+                                }}
+                              >
+                                {doc.name}
+                                {/* <span style={{ fontSize: "0.85rem" }}>
+                                  {doc.file_extension.toLowerCase()}
+                                </span> */}
+                              </td>
+                              <td
+                                style={{
+                                  fontWeight: "500",
+                                  padding: "0.2rem 0.6rem",
+                                  fontSize: "0.9rem",
+                                }}
+                              >
+                                №{doc.version}
+                                <span style={{ fontSize: "0.85rem" }}>
+                                  {/* {doc.file_extension.toLowerCase()} */}
+                                </span>
+                              </td>
+                              <td
+                                style={{
+                                  fontWeight: "500",
+                                  padding: "0.2rem 0.6rem",
+                                  fontSize: "0.9rem",
+                                }}
+                              >
+                                {doc.signed_at}
+                                <span style={{ fontSize: "0.85rem" }}>
+                                  {/* {doc.file_extension.toLowerCase()} */}
+                                </span>
+                              </td>
+                              <td
+                                style={{
+                                  fontWeight: "500",
+                                  padding: "0.2rem 0.6rem",
+                                  fontSize: "0.9rem",
+                                  textAlign: "center",
+                                  width: "5%",
+                                }}
+                              >
+                                <a href={doc.url} target="_blank">
+                                  <DownloadIcon color={"#3BB1E3"} />
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </Card.Body>
                 </Card>
               </div>
