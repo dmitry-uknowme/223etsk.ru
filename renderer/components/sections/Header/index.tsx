@@ -19,6 +19,13 @@ const Header = () => {
           <div className="col-md-2 col-sm-6 col-6 offset-md-1 d-block d-sm-block d-md-none">
             <Support />
           </div>
+          <div className="col-md-2 d-block d-sm-block d-md-none">
+            <Button
+              label="Вход"
+              link="https://lk.novorostorgi.ru/"
+              variant={ButtonVariants.SECONDARY}
+            />
+          </div>
           <div className="col-md-5">
             <Navbar />
           </div>
