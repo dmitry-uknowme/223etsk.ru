@@ -45,7 +45,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
   });
 
   const procedure = procedureQuery.data;
-  console.log("procecc", notice);
+  // console.log("procecc", notice);
   // console.log("proceocoeoce", procedure);
 
   // const lot = procedure?.lots[0];
@@ -68,9 +68,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                   active: true,
                 },
                 {
-                  type: "link_eis",
-                  label: `Извещение № `,
-                  reg_number: notice.registry_number,
+                  label: `Извещение № ${notice?.registry_number}`,
                   active: true,
                 },
               ]}
