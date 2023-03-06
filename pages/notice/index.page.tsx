@@ -69,23 +69,23 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                 },
                 {
                   type: "link_eis",
-                  label: "Извещение № 32312166553",
+                  label: `Извещение № `,
+                  reg_number: notice.registry_number,
                   active: true,
                 },
               ]}
             />
           )}
           {notice && (
+            // {NOTICE_CANCEL}
             <>
               <div className="d-flex align-items-center">
                 <h2 className="text-black m-0">
                   <Link
-                    href={
-                      "https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=32312166553"
-                    }
+                    href={`https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=${notice?.registry_number}`}
                     style={{ textDecoration: "underline", color: "#111" }}
                   >
-                    Извещение № 32312166553
+                    Извещение № {notice?.registry_number}
                   </Link>{" "}
                   {/* {noticeId} */}
                 </h2>
@@ -140,7 +140,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                               width: "50%",
                             }}
                           >
-                            32312166553
+                            {notice?.registry_number}
                             {/* {notice.registry_number} */}
                           </td>
                         </tr>

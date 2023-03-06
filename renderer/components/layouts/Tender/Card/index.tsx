@@ -5,6 +5,7 @@ import ProtocolsList from "../ProtocolsList";
 import NoticesList from "../NoticesList";
 import fetchLotPositions from "../../../../api/fetchLotPositions";
 import { useQuery } from "react-query";
+import { getLocalizedStatus } from "../../../../../pages/tenders/index.page";
 
 interface TenderCardProps {
   tender: any;
@@ -30,6 +31,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
       title: "Сведения о закупке",
       items: [
         { label: "Наименование", value: tender.name },
+        { label: "Статус", value: getLocalizedStatus(tender.status) },
         {
           label: "Номер извещения",
           value: `${

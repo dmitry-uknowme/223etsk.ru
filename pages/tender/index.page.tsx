@@ -69,22 +69,23 @@ const TenderPage: React.FC<TenderPageProps> = ({ tenderId }) => {
                   Закупка №{tender.number}/1{" "}
                   {tender.registry_number ? (
                     <Link
-                      href={
-                        "https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=32312166553"
-                      }
+                      href={`https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=${tender.registry_number}`}
                       style={{ textDecoration: "underline", color: "#111" }}
                     >
-                      {tender.registry_number}
+                      {tender?.registry_number}
                     </Link>
                   ) : (
                     ""
                   )}
                 </h2>
-                <Link href="https://lk.novorostorgi.ru/procedure/request-quotation/a34384ed-d678-4ce4-98b5-e3838c36f301">
+                <Link
+                  href={`https://lk.novorostorgi.ru/procedure/${tender.id}`}
+                >
                   <Button
                     label="Подать заявку"
                     variant={ButtonVariants.SECONDARY}
                     className={styles.tender__btn}
+                    link={`https://lk.novorostorgi.ru/procedure/${tender.id}`}
                   />
                 </Link>
               </div>
@@ -92,7 +93,9 @@ const TenderPage: React.FC<TenderPageProps> = ({ tenderId }) => {
                 <TenderCard tender={tender} />
               </div>
               <div className="col-md-3">
-                <TenderNav />
+                <TenderNav
+                  link={`https://lk.novorostorgi.ru/procedure/${tender.id}`}
+                />
               </div>
             </>
           )}

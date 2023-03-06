@@ -18,22 +18,7 @@ const HistoryBar: React.FC<HistoryBarProps> = ({ historyData }) => {
       <div className={styles.historyBar__row}>
         {historyData?.map(({ label, path, active, type }, id) => (
           <>
-            {type === "link_eis" ? (
-              <Link
-                href={
-                  "https://zakupki.gov.ru/223/purchase/public/purchase/info/common-info.html?regNumber=32312166553"
-                }
-                key={id}
-              >
-                <div
-                  className={`${styles.historyBar__item} ${
-                    active ? "text-secondary" : "text-muted"
-                  }`}
-                >
-                  {label}
-                </div>
-              </Link>
-            ) : active ? (
+            {active ? (
               <Link href={path} key={id}>
                 <div
                   className={`${styles.historyBar__item} ${

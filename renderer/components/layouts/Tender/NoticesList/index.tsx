@@ -7,7 +7,7 @@ const NoticesList = ({ notices, tender }: any) => {
       <Card.Header>Извещения</Card.Header>
       <Card.Body>
         <table
-          className="table-responsive table-bordered"
+          className="table-responsive table-bordered table-hover"
           style={{ width: "96%", margin: "0 2%" }}
         >
           <thead>
@@ -66,7 +66,11 @@ const NoticesList = ({ notices, tender }: any) => {
                     textAlign: "center",
                   }}
                 >
-                  Извещение о проведении закупки
+                  {notice?.type === "NOTICE_TYPE"
+                    ? "Извещение о проведении закупки"
+                    : notice?.type === "NOTICE_CANCEL"
+                    ? "Извещение об отказе от проведения закупки"
+                    : ""}
                   {/* {notice.title} */}
                 </td>
                 <td

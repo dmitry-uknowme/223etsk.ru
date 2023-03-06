@@ -83,7 +83,7 @@ const localizedStatuses = [
   },
   {
     id: 6,
-    value: 'STATUS_CANCEL',
+    value: "STATUS_CANCEL",
     label: "Торги отменены",
   },
   {
@@ -92,6 +92,10 @@ const localizedStatuses = [
     label: "Опубликована",
   },
 ];
+
+export const getLocalizedStatus = (value: string) => {
+  return localizedStatuses.find((status) => status.value === value)?.label;
+};
 
 const localizedMethods = [
   {
@@ -538,7 +542,6 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                                     margin: "0.2rem 0.4rem",
                                   }}
                                 >
-                                  
                                   {tender.price_localized}
                                 </p>
                               </td>
