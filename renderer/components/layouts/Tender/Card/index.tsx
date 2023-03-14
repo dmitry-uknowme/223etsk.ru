@@ -6,6 +6,7 @@ import NoticesList from "../NoticesList";
 import fetchLotPositions from "../../../../api/fetchLotPositions";
 import { useQuery } from "react-query";
 import { getLocalizedStatus } from "../../../../../pages/tenders/index.page";
+import formatDate from "../../../../utils/formatDate";
 
 interface TenderCardProps {
   tender: any;
@@ -101,7 +102,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
       items: [
         {
           label: "Дата и время начала подачи заявок",
-          value: tender.start_bid_date,
+          value: formatDate(tender.start_bid_date),
         },
         // {
         //   label: "Дата и время начала подачи заявок",
@@ -109,7 +110,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
         // },
         {
           label: "Дата и время окончания подачи заявок",
-          value: tender.close_bid_date,
+          value: formatDate(tender.close_bid_date),
         },
         // {
         //   label: "Дата и время окончания подачи заявок",
@@ -117,7 +118,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
         // },
         {
           label: "Дата и время рассмотрения и оценки заявок",
-          value: tender.review_bid_date,
+          value: formatDate(tender.review_bid_date),
         },
         // {
         //   label: "Дата и время рассмотрения и оценки заявок",
@@ -126,7 +127,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
 
         {
           label: "Дата и время подведения итогов",
-          value: tender.summing_up_date,
+          value:formatDate(tender.summing_up_date),
         },
         // {
         //   label: "Дата и время подведения итогов",
@@ -284,7 +285,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender.start_bid_date}
+                    {formatDate(tender.start_bid_date)}
                   </td>
                 </tr>
                 <tr style={{ width: "100%" }}>
@@ -306,7 +307,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender.close_bid_date}
+                    {formatDate(tender.close_bid_date)}
                   </td>
                 </tr>
                 <tr style={{ width: "100%" }}>
@@ -328,7 +329,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender.summing_bid_date}
+                    {formatDate(tender.summing_bid_date)}
                   </td>
                 </tr>
                 <tr style={{ width: "100%" }}>
@@ -350,7 +351,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       width: "50%",
                     }}
                   >
-                    {tender.summing_up_date}
+                    {formatDate(tender.summing_up_date)}
                   </td>
                 </tr>
               </tbody>
@@ -409,7 +410,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       {number + 1}
                     </td>
                     <td className="table-row-value" style={{ width: "50px" }}>
-                      {position.qty}, {position.unit_name}
+                     {position?.qty || position?.unit_name ?  `${position.qty}, ${position.unit_name}` : ''}
                     </td>
                     <td className="table-row-value" style={{ width: "150px" }}>
                       {position.okpd_code}. {position.okpd_name}

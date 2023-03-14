@@ -1,4 +1,5 @@
 import React from "react";
+import formatDate from "../../../../utils/formatDate";
 import Card from "../../../ui/Card";
 
 const NoticesList = ({ notices, tender }: any) => {
@@ -93,7 +94,7 @@ const NoticesList = ({ notices, tender }: any) => {
                     textAlign: "center",
                   }}
                 >
-                  {notice.publish_date_time}
+                  {formatDate(notice.publish_date_time)}
                 </td>
               </tr>
             ))}

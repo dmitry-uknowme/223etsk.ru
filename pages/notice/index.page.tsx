@@ -12,6 +12,7 @@ import Card from "../../renderer/components/ui/Card";
 import { Link } from "../../renderer/Link";
 import INotice from "../../types/notice";
 import { DownloadIcon } from "@chakra-ui/icons";
+import formatDate from "../../renderer/utils/formatDate";
 
 interface NoticePageProps {
   noticeId: string;
@@ -544,7 +545,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.start_bid_date}
+                            {formatDate(notice.start_bid_date)}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -566,7 +567,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.close_bid_date}
+                            {formatDate(notice.close_bid_date)}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -588,7 +589,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.summing_bid_date}
+                            {formatDate(notice.summing_bid_date)}
                           </td>
                         </tr>
                         <tr style={{ width: "100%" }}>
@@ -610,7 +611,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ noticeId, procedureId }) => {
                               width: "50%",
                             }}
                           >
-                            {notice.summing_up_date}
+                            {formatDate(notice.summing_up_date)}
                           </td>
                         </tr>
                       </tbody>

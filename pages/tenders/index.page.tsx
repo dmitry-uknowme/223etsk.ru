@@ -35,6 +35,7 @@ import {
   ITenderStatusVariants,
 } from "../../renderer/types/tender";
 import useDebounce from "../../renderer/hooks/useDebounce";
+import formatDate from "../../renderer/utils/formatDate";
 
 interface TendersPageProps {
   serverTenders: ITender[];
@@ -553,14 +554,14 @@ const TendersPage: React.FC<TendersPageProps> = () => {
                                     fontWeight: 500,
                                   }}
                                 >
-                                  {tender.start_bid_date}
+                                  {formatDate(tender.start_bid_date)}
                                 </p>
                               </td>
                               <td className="tender_date">
-                                {tender.close_bid_date}
+                                {formatDate(tender.close_bid_date)}
                               </td>
                               <td className="tender_date">
-                                {tender.start_trade_date}
+                                {formatDate(tender.start_trade_date)}
                               </td>
                               <td>
                                 <p
