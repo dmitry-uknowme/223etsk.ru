@@ -92,6 +92,11 @@ const localizedStatuses = [
     value: ITenderStatusVariants.ACTIVE,
     label: "Опубликована",
   },
+  {
+    id: 8,
+    value: "STATUS_FAILED",
+    label:"Несостоявшаяся",
+  },
 ];
 
 export const getLocalizedStatus = (value: string) => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "../../../Link";
 import Button, { ButtonVariants } from "../../ui/Button";
 import styles from "./index.module.sass";
 
@@ -25,11 +26,12 @@ const Slider = () => {
                             />
                         </div>
                         <div className="col-md-2 offset-md-1 col-sm-4 col-4">
+                          <Link href="/tenders">
                             <Button
                                 label="Найти"
                                 variant={ButtonVariants.PRIMARY}
                                 className={styles.slider__searchBtn}
-                            />
+                            /></Link>
                         </div>
                     </div>
                 </div>

@@ -46,6 +46,7 @@ export const defaultFilter = {
     ITenderStatusVariants.BIDDING_PROCESS,
     ITenderStatusVariants.BIDDING_COMPLETED,
     'STATUS_CANCEL',
+    "STATUS_FAILED",
     ITenderStatusVariants.SUMMING_UP_APPLICATIONS,
   ],
 };
