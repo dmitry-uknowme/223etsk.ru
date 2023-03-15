@@ -55,7 +55,7 @@ const searchTenders = async (filters?: IFilter) => {
     filters = defaultFilter;
   }
 
-  const { data } = await axios.post(`${API_URL}/procedures/search`, {...filters,sort:{name:"SORT_PUBLISHED_AT", by:"SORT_ASC"}});
+  const { data } = await axios.post(`${API_URL}/procedures/search`, {...filters,sort:{name:"SORT_PUBLISHED_AT", by:"SORT_DESC"}});
   // const { data } = await axios.post(`${API_URL}/procedures/search`, filters);
   return data;
 };
