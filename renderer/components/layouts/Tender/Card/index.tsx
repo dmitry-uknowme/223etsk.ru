@@ -127,7 +127,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
 
         {
           label: "Дата и время подведения итогов",
-          value:formatDate(tender.summing_up_date),
+          value: formatDate(tender.summing_up_date),
         },
         // {
         //   label: "Дата и время подведения итогов",
@@ -185,7 +185,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
         <NoticesList notices={tender.notices} tender={tender} />
       </div>
       <div className="mt-4">
-        <ProtocolsList protocols={tender.protocols} />
+        <ProtocolsList protocols={tender.protocols} tender={tender} />
       </div>
       <div className="mt-4">
         <Card>
@@ -410,7 +410,9 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       {number + 1}
                     </td>
                     <td className="table-row-value" style={{ width: "50px" }}>
-                     {position?.qty || position?.unit_name ?  `${position.qty}, ${position.unit_name}` : ''}
+                      {position?.qty || position?.unit_name
+                        ? `${position.qty}, ${position.unit_name}`
+                        : ""}
                     </td>
                     <td className="table-row-value" style={{ width: "150px" }}>
                       {position.okpd_code}. {position.okpd_name}
