@@ -249,7 +249,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ protocolId, procedureId }) => {
                                 №{member?.role}
                                 <span style={{ fontSize: "0.85rem" }}></span>
                               </td>
-                              <td
+                              {/* <td
                                 style={{
                                   fontWeight: "500",
                                   padding: "0.2rem 0.6rem",
@@ -271,7 +271,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ protocolId, procedureId }) => {
                                 <a href={doc.url} target="_blank">
                                   <DownloadIcon color={"#3BB1E3"} />
                                 </a>
-                              </td>
+                              </td> */}
                             </tr>
                           ))}
                         </tbody>
