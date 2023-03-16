@@ -228,7 +228,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ protocolId, procedureId }) => {
                           </tr>
                         </thead>
                         <tbody>
-                          {protocol?.comission?.members?.map((member) => (
+                          {protocol?.commission?.members?.map((member) => (
                             <tr>
                               <td
                                 style={{
