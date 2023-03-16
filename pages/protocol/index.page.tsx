@@ -228,8 +228,17 @@ const NoticePage: React.FC<NoticePageProps> = ({ protocolId, procedureId }) => {
                           </tr>
                         </thead>
                         <tbody>
-                          {protocol?.commission?.members?.map((member) => (
+                          {protocol?.commission?.members?.map((member,num) => (
                             <tr>
+                              <td
+                                style={{
+                                  fontWeight: "500",
+                                  padding: "0.2rem 0.6rem",
+                                  fontSize: "0.9rem",
+                                }}
+                              >
+                                № {num}
+                              </td>
                               <td
                                 style={{
                                   fontWeight: "500",
@@ -246,7 +255,7 @@ const NoticePage: React.FC<NoticePageProps> = ({ protocolId, procedureId }) => {
                                   fontSize: "0.9rem",
                                 }}
                               >
-                                №{member?.role}
+                                {member?.role}
                                 <span style={{ fontSize: "0.85rem" }}></span>
                               </td>
                               {/* <td
