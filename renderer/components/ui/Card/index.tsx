@@ -6,8 +6,8 @@ interface CardProps {
   style?: any;
 }
 
-const Card: React.FC<CardProps> = ({ children, className }) => {
-  return <div className={`card ${styles.card} ${className}`}>{children}</div>;
+const Card: React.FC<CardProps> = ({ children, className, style }) => {
+  return <div className={`card ${styles.card} ${className}`} style={{ height: '100%', ...style }} > {children}</div >;
 };
 
 const CardHeader: React.FC<CardProps> = ({ children, className, style }) => {
