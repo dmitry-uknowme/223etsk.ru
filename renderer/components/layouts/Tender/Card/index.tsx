@@ -264,16 +264,18 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                       ? ` ${(tender.price.amount / 100).toFixed(2)} руб.`
                       : "Не предусмотрено"}
                   </td>
-                  <td
-                    className="text-muted"
-                    style={{
-                      padding: "0.2rem 0.6rem",
-                      fontSize: "0.85rem",
-                      width: "50%",
-                    }}
-                  >
-                    Комиссия ЭТП
-                  </td>
+
+                </tr>
+                <tr style={{ width: "100%" }}>  <td
+                  className="text-muted"
+                  style={{
+                    padding: "0.2rem 0.6rem",
+                    fontSize: "0.85rem",
+                    width: "50%",
+                  }}
+                >
+                  Комиссия ЭТП
+                </td>
                   <td
                     style={{
                       fontWeight: "500",
@@ -283,8 +285,7 @@ const TenderCard: React.FC<TenderCardProps> = ({ tender }) => {
                     }}
                   >
                     {tender?.platform_fee}
-                  </td>
-                </tr>
+                  </td></tr>
                 <tr style={{ width: "100%" }}>
                   <td
                     className="text-muted"
