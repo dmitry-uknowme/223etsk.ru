@@ -18,7 +18,8 @@ const FooterContacts = () => {
             <div className="row mt-2">
                 {/* <div className="col-md-4"> */}
                 <div className={styles.contacts__phone}>
-                    8-800-350-65-79
+                    {/* 8-800-350-65-79 */}
+                    +7 (919) 150-09-26
                 </div>
             </div>
 

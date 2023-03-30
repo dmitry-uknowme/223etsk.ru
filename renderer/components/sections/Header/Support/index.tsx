@@ -18,7 +18,8 @@ const HeaderSupport = () => {
                         </div>
                         <div className="col-md-12 col-12">
                             <div className={styles.support__phone}>
-                                8-800-350-65-79
+                                {/* 8-800-350-65-79 */}
+                                +7 (919) 150-09-26
                             </div>
                         </div>
                     </div>
