@@ -20,7 +20,7 @@ import "antd/dist/antd.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./assets/styles/app.sass";
-import axios from "axios";
+
 
 hydrate();
 async function hydrate() {
